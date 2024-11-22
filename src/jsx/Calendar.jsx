@@ -1,5 +1,6 @@
 import moment from 'moment'
 import 'moment/dist/locale/ru'
+import PropTypes from 'prop-types';
 
 function CalculateDate({date}) {
     const year = date.getFullYear();
@@ -9,7 +10,6 @@ function CalculateDate({date}) {
     const startOfMonth = moment().year(year).month(month).startOf('month'); // Начальная дата месяца
     const endOfMonth = moment().year(year).month(month).endOf('month'); // Последний дата месяца
     const startMonthWeekDay = (startOfMonth.day() + 6) % 7; // Дней до понедельника от 1 числа текущего месяца до прошлого месяца
-    const endMonthDay = endOfMonth.date(); // Последний день месяца
 
     let currentWeek = [];
     let currentDate = startOfMonth.clone().subtract(startMonthWeekDay, 'days');
@@ -53,17 +53,17 @@ function DatePicker({date}) {
     const monthWithoutP = moment(date).format('MMMM')
     return (
         <>
-            <div class="ui-datepicker-material-header">
-                <div class="ui-datepicker-material-day">{week}</div>
-                <div class="ui-datepicker-material-date">
-                <div class="ui-datepicker-material-day-num">{day}</div>
-                <div class="ui-datepicker-material-month">{month}</div>
-                <div class="ui-datepicker-material-year">{year}</div>
+            <div className="ui-datepicker-material-header">
+                <div className="ui-datepicker-material-day">{week}</div>
+                <div className="ui-datepicker-material-date">
+                <div className="ui-datepicker-material-day-num">{day}</div>
+                <div className="ui-datepicker-material-month">{month}</div>
+                <div className="ui-datepicker-material-year">{year}</div>
                 </div>
             </div>
-            <div class="ui-datepicker-header">
-                <div class="ui-datepicker-title">
-                <span class="ui-datepicker-month">{monthWithoutP}</span>&nbsp;<span class="ui-datepicker-year">{year}</span>
+            <div className="ui-datepicker-header">
+                <div className="ui-datepicker-title">
+                <span className="ui-datepicker-month">{monthWithoutP}</span>&nbsp;<span className="ui-datepicker-year">{year}</span>
                 </div>
             </div>
         </>
@@ -72,17 +72,17 @@ function DatePicker({date}) {
 
 export default function Calendar({date}) {
     return (
-        <div class="ui-datepicker">
+        <div className="ui-datepicker">
             <DatePicker date={date}/>
-            <table class="ui-datepicker-calendar">
+            <table className="ui-datepicker-calendar">
                 <colgroup>
                 <col />
                 <col />
                 <col />
                 <col />
                 <col />
-                <col class="ui-datepicker-week-end" />
-                <col class="ui-datepicker-week-end" />
+                <col className="ui-datepicker-week-end" />
+                <col className="ui-datepicker-week-end" />
                 </colgroup>
                 <thead>
                 <tr>
@@ -100,3 +100,15 @@ export default function Calendar({date}) {
         </div>
     )
 }
+
+CalculateDate.propTypes = {
+    date: PropTypes.object
+};
+
+Calendar.propTypes = {
+date: PropTypes.object
+};
+
+DatePicker.propTypes = {
+date: PropTypes.object
+};

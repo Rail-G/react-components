@@ -1,5 +1,6 @@
 import ShopItemFunc from './ShopItemFunc'
 import ShopItemClass from './ShopItemClass'
+import PropTypes from 'prop-types';
 
 function ShopItemBlock({children}) {
     return (
@@ -36,3 +37,7 @@ export default function ShopItems() {
         </>
     )
 }
+
+ShopItemBlock.propTypes = {
+    children: PropTypes.object
+};
